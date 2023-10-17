@@ -1,16 +1,18 @@
 package ru.sberbank.edu;
 
+
+/**
+ * Класс вернет наибольший общий делитель 2х чисел. (Алгоримт Евклида с использованием рекурсии)
+ *
+ */
 public class GCD implements CommonDivisor{
     @Override
     public int getDivisor(int firstNumber, int secondNumber) {
 
-        int gcd = 1;
-        for (int i = 1; i <= firstNumber && i <= secondNumber; i++) {
-            if (firstNumber % i == 0 && secondNumber % i == 0) {
-                gcd = i;
-            }
+        if (secondNumber == 0) {
+            return firstNumber;
         }
-        return gcd;
+        return getDivisor(secondNumber, firstNumber % secondNumber);
     }
     }
 

@@ -1,7 +1,7 @@
 package ru.sberbank.edu;
 
 /**
- * Hello world!
+ * main
  *
  */
 public class App 

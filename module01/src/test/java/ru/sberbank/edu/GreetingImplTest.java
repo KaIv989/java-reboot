@@ -1,5 +1,10 @@
 package ru.sberbank.edu;
 
+/**
+ * Тест GreetingImpl
+ *
+ */
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,5 +1,10 @@
 package ru.sberbank.edu;
 
+/**
+ * Тест GCD
+ *
+ */
+
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +28,7 @@ public class GCDTest {
     @Test
     public void gcd_0_72() {
         GCD gcd = new GCD();
-        int ExpectedResult = 1;
+        int ExpectedResult = 72;
         assertEquals(ExpectedResult, gcd.getDivisor(0, 72));
     }
 

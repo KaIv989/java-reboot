@@ -1,5 +1,9 @@
 package ru.sberbank.edu;
 
+/**
+ * Класс вернет мои хобби
+ *
+ */
 public class GreetingImpl implements Greeting{
     @Override
     public String getBestHobby() {
