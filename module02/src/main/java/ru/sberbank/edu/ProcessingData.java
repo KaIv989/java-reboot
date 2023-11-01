@@ -4,15 +4,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 public class ProcessingData {
-    public void fileStatistics(Storage storage) {
+    /**
+     * Принимает на вход файл.
+     * Собирает статистику: сколько строк, какая строка самая длинная, сколько всего пробелов.
+     */
+    public String fileStatistics(Storage storage) {
         int countLine = 0;
         int longest = 0;
         int countSpaces = 0;
 
         String longestLine = "";
-        String resCountLine = "";
-        String resCountSpaces = "";
+        String resCountLine;
+        String resCountSpaces;
 
         String line;
         try (BufferedReader reader = new BufferedReader(new FileReader("my_file.txt"))) {
@@ -31,6 +36,8 @@ public class ProcessingData {
         resCountLine = "Всего строк = " + countLine;
 
         resCountSpaces = "всего пробелов = " + countSpaces;
-        storage.save("Результат: " + resCountLine + "\n" + longestLine + "\n" + resCountSpaces + "\n");
+        String result = ("Результат: " + resCountLine + "\n" + longestLine + "\n" + resCountSpaces + "\n");
+        storage.save(result);
+        return result;
     }
 }

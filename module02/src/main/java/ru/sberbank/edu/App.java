@@ -1,15 +1,19 @@
 package ru.sberbank.edu;
 
 /**
- * Hello world!
- *
+ * Программа, которая принимает на вход файл, содержащий некую инфомацию на нескольких строках.
+ * Собирает статистику: сколько строк, какая строка самая длинная, сколько всего пробелов.
+ * Результат записывает в другой файл.
+ * Может сохоранять в бд или в файл.
  */
 public class App
 {
     public static void main( String[] args )
     {
+
         ProcessingData file = new ProcessingData();
         file.fileStatistics(new StorageFileLocal());
-        System.out.println( "Hello World!" );
+        file.fileStatistics(new StorageFileDb());
+
     }
 }

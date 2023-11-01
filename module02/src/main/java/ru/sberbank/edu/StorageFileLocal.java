@@ -13,6 +13,6 @@ public class StorageFileLocal implements Storage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("File");
+        System.out.println("Сохранили локально " + data);
     }
 }
