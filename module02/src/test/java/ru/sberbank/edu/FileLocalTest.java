@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- *Тест GCD
+ *Тест результата подсчета данных
+ * в файле.
  */
 
 public class FileLocalTest {
