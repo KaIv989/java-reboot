@@ -40,3 +40,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/module02/
+/.idea/
+/res_file.txt
