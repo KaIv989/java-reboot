@@ -5,6 +5,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+        * Hello Тест!
+        *
+        */
 public class TestCustomArrayImpl {
     @Test
     public void equalsArray() {
