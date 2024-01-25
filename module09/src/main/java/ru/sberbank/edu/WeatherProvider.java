@@ -1,12 +1,16 @@
 package ru.sberbank.edu;
 
-/**
- * Weather provider
- */
-public class WeatherProvider {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
-//    private RestTemplate restTemplate;
-//    private String appKey;
+import java.io.Serializable;
+@Service
+public class WeatherProvider implements Serializable {
+
+    //    private RestTemplate restTemplate = null;
 
     /**
      * Download ACTUAL weather info from internet.
@@ -16,7 +20,25 @@ public class WeatherProvider {
      * @param city - city
      * @return weather info or null
      */
+    private RestTemplate restTemplate;
+    @Value("${app.apikey}")
+    private String apiKey;
+    @Value("${app.apiurl}")
+    private String apiUrl;
+
+    @Autowired
+    public WeatherProvider(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public WeatherInfo get(String city) {
-        return null;
+
+        try {
+            WeatherInfo weatherInfo = restTemplate.getForObject(apiUrl, WeatherInfo.class, city, apiKey);
+            return weatherInfo;
+        }
+        catch (HttpClientErrorException ex) {
+            return null;
+        }
     }
 }

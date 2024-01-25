@@ -1,20 +1,24 @@
 package ru.sberbank.edu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Weather cache.
- */
 public class WeatherCache {
 
     private final Map<String, WeatherInfo> cache = new HashMap<>();
-    private WeatherProvider weatherProvider;
+    private final WeatherProvider weatherProvider;
 
     /**
-     * Default constructor.
+     * Constructor.
+     *
+     * @param weatherProvider - weather provider
      */
-    public WeatherCache() {
+    @Autowired
+    public WeatherCache(WeatherProvider weatherProvider) {
+        this.weatherProvider = weatherProvider;
     }
 
     /**
@@ -26,15 +30,43 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
+
     public WeatherInfo getWeatherInfo(String city) {
-        // should be implemented
-        return null;
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println(localDateTime);
+        WeatherInfo wi = null;
+        if (!cache.containsKey(city)) {
+            wi = weatherProvider.get(city);
+            if (wi == null) {
+                System.out.println("Bad REQUEST!");
+            }
+            else {
+                cache.put(city, wi);
+                System.out.println("PUT NEW NOTE TO CACHE");
+            }
+        } else {
+            for (Map.Entry<String, WeatherInfo> item : cache.entrySet()) {
+                if (item.getKey().equalsIgnoreCase(city)) {
+                    wi = item.getValue();
+                    if (localDateTime.compareTo(wi.getExpiryTime())>0) {
+                        removeWeatherInfo(city);
+                        System.out.println("UPDATE NOTE IN CACHE");
+                        wi = weatherProvider.get(city);
+                        cache.put(city, wi);
+                    }
+                    else {
+                        System.out.println("GET NOTE FROM CACHE");
+                    }
+                }
+            }
+        }
+        return wi;
     }
 
     /**
      * Remove weather info from cache.
      **/
     public void removeWeatherInfo(String city) {
-        // should be implemented
+        cache.remove(city);
     }
 }

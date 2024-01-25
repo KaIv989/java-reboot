@@ -1,6 +1,11 @@
 package ru.sberbank.edu;
 
-public class WeatherProvider {
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+import java.io.Serializable;
+
+public class WeatherProvider implements Serializable {
 
     //    private RestTemplate restTemplate = null;
 
@@ -12,7 +17,18 @@ public class WeatherProvider {
      * @param city - city
      * @return weather info or null
      */
+    private RestTemplate restTemplate = new RestTemplate();
+
     public WeatherInfo get(String city) {
-        return null;
+        String ApiKey = "";
+        String URL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + ApiKey;
+
+        try {
+            WeatherInfo weatherInfo = restTemplate.getForObject(URL, WeatherInfo.class);
+            return weatherInfo;
+        }
+        catch (HttpClientErrorException ex) {
+            return null;
+        }
     }
 }
