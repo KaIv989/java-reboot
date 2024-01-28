@@ -1,7 +1,5 @@
-package ru.edu.module12.entity;
-
+package ru.edu.module13.entity;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "users")
 public class User {
