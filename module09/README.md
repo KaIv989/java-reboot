@@ -25,16 +25,23 @@
 
 1. Следующий код работает и выводит надпись GOOD! в консоль
 
-```java
-public static void main(String[] args) {
-   ApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
+[//]: # (```java)
 
-   WeatherCache cache = context.getBean(WeatherCache.class);
+[//]: # (public static void main&#40;String[] args&#41; {)
 
-   WeatherInfo weatherInfo = cache.getWeatherInfo("OMSK");
-   System.out.println("GOOD! weather=" + weatherInfo);
-}
-```
+[//]: # (   ApplicationContext context = new AnnotationConfigApplicationContext&#40;MyConfig.class&#41;;)
+
+[//]: # ()
+[//]: # (   WeatherCache cache = context.getBean&#40;WeatherCache.class&#41;;)
+
+[//]: # ()
+[//]: # (   WeatherInfo weatherInfo = cache.getWeatherInfo&#40;"OMSK"&#41;;)
+
+[//]: # (   System.out.println&#40;"GOOD! weather=" + weatherInfo&#41;;)
+
+[//]: # (})
+
+[//]: # (```)
 
 1. Проект должен собираться.
 2. Класс должен быть протестирован с помощью JUnit.
